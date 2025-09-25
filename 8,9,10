@@ -1,0 +1,74 @@
+8. Develop a test to Synchronize with an implicit wait
+package mynewproj;
+import java.time.Duration;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+public class implicit {
+public static void main(String[] args) {
+// TODO Auto-generated method stub
+WebDriver driver = new ChromeDriver();
+driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+driver.get("https://demoqa.com/dynamic-properties");
+driver.findElement(By.id("visibleAfter")).click();
+driver.close();
+}
+}
+
+
+9. Develop a test to Synchronize with an explicit wait
+package mynewproj;
+import java.time.Duration;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+public class explicit {
+public static void main(String[] args) {
+// TODO Auto-generated method stub
+System.setProperty("webdriver.chrome.driver","/home/skasc/Downloads/chrom
+edriver");
+WebDriver driver = new ChromeDriver();
+driver.get("https://www.google.com/");
+driver.manage().window().maximize();
+WebDriverWait wait=new WebDriverWait(driver,
+Duration.ofSeconds(15));
+wait.until(ExpectedConditions.titleContains("Goo"));
+wait.until(ExpectedConditions.titleIs("Google"));
+WebElement search =driver.findElement(By.name("q"));
+search.sendKeys("India");
+search.sendKeys(Keys.ENTER);
+wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h3[.='In
+dia']"))).click();
+}
+}
+
+
+10. Test the case by Identifying and handling a pop-up window by
+its
+name.
+package project;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+public class explicit {
+public static void main(String[] args) throws InterruptedException {
+// TODO Auto-generated method stub
+System.setProperty("webdriver.chrome.driver","/home/skasc/Downloads/chrom
+edriver");
+WebDriver driver = new ChromeDriver();
+driver.get("https://demo.guru99.com/test/delete_customer.php");
+driver.findElement(By.name("cusid")).sendKeys("53920");
+driver.findElement(By.name("submit")).submit();
+Alert alert =driver.switchTo().alert();
+String alertMessage=driver.switchTo().alert().getText();
+System.out.println(alertMessage);
+Thread.sleep(10000);
+alert.accept();
+}
+}
